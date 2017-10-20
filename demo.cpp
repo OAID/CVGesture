@@ -26,12 +26,21 @@ int main()
     int frame_cnt = 0;
     int T=5;
     double avg_fps=0;
+    int64 s;
+    double time_palm=0, time_fist=0;
     while(true)
     {
         int64 start = cv::getTickCount();
         cap>>img;
+
+        s = cv::getTickCount();
         Palm.detectMultiScale(img,palm,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
+        time_palm += (cv::getTickCount() - s) / cv::getTickFrequency();
+
+        s = cv::getTickCount();
         Fist.detectMultiScale(img,Fists,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
+        time_fist += (cv::getTickCount() - s) / cv::getTickFrequency();
+
         for(unsigned int	i=0 ,j=0; i< Fists.size() || j < palm.size() ; j++,i++)
         {
             if(Fists.size())
@@ -50,9 +59,11 @@ int main()
         if(time_past >= T)
         {
             avg_fps = (double)frame_cnt / time_past;
+            printf("average fps:%3.2f, time_palm:%f ms, time_fist:%f ms in %d second\n", avg_fps, time_palm/frame_cnt*1000, time_fist/frame_cnt*1000, T);
             frame_cnt = 0;
             time_past = 0;
-            printf("average fps in %d second:%3.2f\n", T, avg_fps);
+            time_palm = 0;
+            time_fist = 0;
         }
         char fps_str[256] ;
         sprintf(fps_str,"%s %d","FPS : ",(int)avg_fps);
