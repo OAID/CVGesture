@@ -6,8 +6,8 @@ CVGesture is a project that is maintained by **OPEN** AI LAB, it uses OpenCV to 
 The release version is 0.1.0, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. Can download the source code from [OAID/CVGesture](https://github.com/OAID/CVGesture)
 
 ### Documents
-* [Installation instructions](https://github.com/OAID/CVGesture/installation.md)
-* [Performance Report PDF](https://github.com/OAID/CVGesture/performance_report.pdf)
+* [Installation instructions](installation.md)
+* [Performance Report PDF](performance_report.pdf)
 
 # Haar Feature Traing
    * https://github.com/Sandeep-777/HandGestureDetection
