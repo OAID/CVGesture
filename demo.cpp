@@ -22,11 +22,15 @@ int main()
     char ch;
     Fist.load("fist.xml");
     Palm.load("rpalm.xml");
+    double time_past=0;
+    int frame_cnt = 0;
+    int T=5;
+    double avg_fps=0;
     while(true)
     {
         int64 start = cv::getTickCount();
         cap>>img;
-        Palm.detectMultiScale(img,palm,1.1,3,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
+        Palm.detectMultiScale(img,palm,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
         Fist.detectMultiScale(img,Fists,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
         for(unsigned int	i=0 ,j=0; i< Fists.size() || j < palm.size() ; j++,i++)
         {
@@ -41,9 +45,17 @@ int main()
                 cv::rectangle(img,cv::Point(palm[i].x,palm[i].y),cv::Point(palm[i].x+ palm[i].width,palm[i].y+ palm[i].height),cv::Scalar(0,255,255),1,8,0);
             }
         }
-        double fps = cv::getTickFrequency() / (cv::getTickCount() - start);
+        frame_cnt++;
+        time_past += (cv::getTickCount() - start) / cv::getTickFrequency();
+        if(time_past >= T)
+        {
+            avg_fps = (double)frame_cnt / time_past;
+            frame_cnt = 0;
+            time_past = 0;
+            printf("average fps in %d second:%3.2f\n", T, avg_fps);
+        }
         char fps_str[256] ;
-        sprintf(fps_str,"%s %d","FPS : ",(int)fps);
+        sprintf(fps_str,"%s %d","FPS : ",(int)avg_fps);
         DrawText(img,fps_str,10,50,cv::Scalar(0,255,0));
 
         cv::imshow("Gesture Recognition",img);
