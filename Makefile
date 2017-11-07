@@ -1,7 +1,9 @@
 CFLAGS=-std=c++11 -Wall -g 
 
-CFLAGS+= $(shell pkg-config --cflags opencv)
-LDFLAGS+= $(shell pkg-config --libs opencv)
+export PKG_CONFIG_PATH=/usr/local/AID/pkgconfig
+
+CFLAGS+= `pkg-config --cflags opencv`
+LDFLAGS+= `pkg-config --libs opencv`
 
 demo: demo.o
 	$(CXX) -O3 -o demo demo.o $(LDFLAGS)
