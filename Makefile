@@ -1,7 +1,9 @@
 CFLAGS=-std=c++11 -Wall -g 
 
-CFLAGS+= -I/usr/local/include
-LDFLAGS+=-L/usr/local/lib  -lopencv_videoio -lopencv_video -lopencv_imgproc -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_objdetect
+export PKG_CONFIG_PATH=/usr/local/AID/pkgconfig
+
+CFLAGS+= `pkg-config --cflags opencv`
+LDFLAGS+= `pkg-config --libs opencv`
 
 demo: demo.o gesture.o
 	$(CXX) -O3 -o demo demo.o gesture.o $(LDFLAGS)
