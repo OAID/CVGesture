@@ -20,16 +20,16 @@ void gesture::detect(cv::Mat& img)
     int64 start = cv::getTickCount();
 
     s = cv::getTickCount();
-    Palm.detectMultiScale(img,palm,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
+    Palm.detectMultiScale(img,palm,1.05,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(75,75));
     time_palm += (cv::getTickCount() - s) / cv::getTickFrequency();
 
     s = cv::getTickCount();
-    Fist.detectMultiScale(img,Fists,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(100,100));
+    Fist.detectMultiScale(img,Fists,1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(70,70));
     time_fist += (cv::getTickCount() - s) / cv::getTickFrequency();
 
     if(is_fist())
         add(G_FIST, &(Fists[0]));
-    if(is_palm())
+    else if(is_palm())
         add(G_PALM, &(palm[0]));
 
     frame_cnt++;

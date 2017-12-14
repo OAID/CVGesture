@@ -79,8 +79,8 @@ public:
         m_state_g = S_NONE;
         m_CLICK_JUDGE = 0.5;
         m_state_cord = G_NONE;
-        m_TIME_CONFIRMING_JUDGE = 3;
-        m_ANTI_SHAKING_CNT = 3;
+        m_TIME_CONFIRMING_JUDGE = 0.2;
+        m_ANTI_SHAKING_CNT = 4;
     }
 
     ~gesture(){}

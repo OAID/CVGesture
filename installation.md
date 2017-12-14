@@ -40,6 +40,6 @@ make
 1) cd CVGesture
 2) make 
 3) Plugin USB camera device
-4) ./demo
+4) taskset -c 4,5 ./demo
 5) Raise your right hand to make a **palm** or **fist** shape.
 ```
