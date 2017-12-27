@@ -3,7 +3,7 @@
 
 CVGesture is a project that is maintained by **OPEN** AI LAB, it uses OpenCV to recognize mult-hand geture. 
 
-The release version is 0.1.0, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. Can download the source code from [OAID/CVGesture](https://github.com/OAID/CVGesture)
+The release version is 0.2.0, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. You can download the source code from [OAID/CVGesture](https://github.com/OAID/CVGesture)
 
 ### Documents
 * [Installation instructions](installation.md)
@@ -17,6 +17,10 @@ The release version is 0.1.0, is based on [Rockchip RK3399](http://www.rock-chip
 ### Version 0.1.0 - 2017-10-13 
    
   Initial version supports **palm** and **fist** recognization : 
+
+### Version 0.2.0 - 2017-12-25 
+   
+  Retrained Haar cascade classifier to increase the performance: 
 
 # Issue Report
 Encounter any issue, please report on [issue report](https://github.com/OAID/CVGesture/issues). Issue report should contain the following information :

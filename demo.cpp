@@ -20,11 +20,6 @@ int main()
         cap>>img;
 
         gs->detect(img);
-        if(gs->is_fist())
-        {
-            cv::Rect Fists = gs->get_fist();
-            cv::putText(img,"Fist",cv::Point(Fists.x,Fists.y),cv::FONT_HERSHEY_SIMPLEX,0.8,cv::Scalar(0,0,255),2,1);
-        }
         if(gs->is_palm())
         {
             cv::Rect palm = gs->get_palm();
@@ -38,6 +33,11 @@ int main()
             }
 
         }
+        else if(gs->is_fist())
+        {
+            cv::Rect Fists = gs->get_fist();
+            cv::putText(img,"Fist",cv::Point(Fists.x,Fists.y),cv::FONT_HERSHEY_SIMPLEX,0.8,cv::Scalar(0,0,255),2,1);
+        }
         if(gs->is_select_confirmed())
         {
             cv::rectangle(img, *gs->get_select_lt(), *gs->get_select_rb(), cv::Scalar(255,0,0), 5, 8, 0);
@@ -50,6 +50,10 @@ int main()
 
         cv::imshow("Gesture Recognition",img);
         ch=cv::waitKey(1);
+	if(ch=='s')
+	{
+ 	  cv::imwrite("scr.jpg",img);
+	}
         if(ch==27)
         {
             break;
