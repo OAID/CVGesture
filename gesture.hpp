@@ -73,8 +73,8 @@ public:
 
     gesture()
     {
-        Fist.load("fist_v1.xml");
-        Palm.load("palm_v2.xml");
+        Fist.load("fist_v3.xml");
+        Palm.load("palm_v4.xml");
         m_tick_s = cv::getTickCount();
         m_state_g = S_NONE;
         m_CLICK_JUDGE = 0.5;
