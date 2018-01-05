@@ -1,0 +1,7 @@
+{
+	"palm detect neighbor number": 7,
+	"palm detect rectangle size": 90,
+	"fist detect neighbor number": 7,
+	"fist detect rectangle size": 80,
+	"test iteration time": 5
+}
