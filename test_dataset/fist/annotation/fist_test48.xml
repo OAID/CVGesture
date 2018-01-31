@@ -1,0 +1,26 @@
+<annotation>
+	<folder>img</folder>
+	<filename>fist_test48.jpg</filename>
+	<path>/home/halsayh/halsaynet_test/fist/img/fist_test48.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1200</width>
+		<height>675</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fist</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>393</xmin>
+			<ymin>54</ymin>
+			<xmax>1043</xmax>
+			<ymax>654</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>img</folder>
+	<filename>palm_test64.jpg</filename>
+	<path>/home/halsayh/halsaynet_test/palm/img/palm_test64.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>250</width>
+		<height>180</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>palm</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>67</xmin>
+			<ymin>19</ymin>
+			<xmax>191</xmax>
+			<ymax>129</ymax>
+		</bndbox>
+	</object>
+</annotation>

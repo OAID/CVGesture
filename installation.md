@@ -24,7 +24,8 @@ sudo ldconfig
 * Configure The Libraries:
 Skip this step if OpenCV3.3 has been installed
 ```
-wget https://github.com/OAID/AID-tools/tree/master/script/gen-pkg-config-pc.sh
+wget ftp://ftp.openailab.net/tools/script/gen-pkg-config-pc.sh
+chmod +x ./gen-pkg-config-pc.sh
 sudo ~/gen-pkg-config-pc.sh /usr/local/AID
 ```
 

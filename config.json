@@ -1,7 +1,16 @@
 {
-	"palm detect neighbor number": 7,
-	"palm detect rectangle size": 90,
-	"fist detect neighbor number": 7,
-	"fist detect rectangle size": 80,
-	"test iteration time": 5
+    "palm_classifier_path" : "palm_v4.xml",
+    "fist_classifier_path" : "fist_v3.xml",
+    "APIs" : [
+        {
+	    	"palm detect neighbor number": 7,
+		"palm detect rectangle size": 90,
+		"fist detect neighbor number": 7,
+		"fist detect rectangle size": 80,
+		"test iteration time": 5,
+		"click judge time": 0.5,
+		"draw rectangle delay": 0.2,
+		"anti-shake frame count": 4
+        }
+    ]
 }

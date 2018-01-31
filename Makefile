@@ -1,20 +1,28 @@
-CFLAGS=-std=c++11 -Wall -g 
+TOPDIR =$(shell pwd)
+CXX = g++
+CXXFLAGS+= -std=c++11 -Wall -g
 
 export PKG_CONFIG_PATH=/usr/local/AID/pkgconfig
 
-CFLAGS+= `pkg-config --cflags opencv`
+CXXFLAGS+= `pkg-config --cflags opencv`
 LDFLAGS+= `pkg-config --libs opencv`
 
-demo: demo.o json.o
-	$(CXX) -O3 -o demo demo.o json.o $(LDFLAGS)
+CXXFLAGS += -I$(TOPDIR)/include
 
-demo.o: demo.cpp
-	$(CXX) -O3 -c demo.cpp ${CFLAGS}
-	
-json.o: json.cpp
-	$(CXX) -O3 -c json.cpp ${CFLAGS}
+objs_list += demo.o
+objs_list += gesture.o
+objs_list += tools/jsoncpp.o
+objs_list += tools/log.o
+objs_list += tools/perf.o
+
+EXES = demo
+
+all: $(EXES)
+
+$(EXES) : $(objs_list)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 	
 clean: 
-	rm -f *.d *.o
-	rm -f demo
+	$(RM) $(EXES)
+	$(RM) $(objs_list)
 
