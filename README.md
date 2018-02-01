@@ -15,7 +15,7 @@ The release version is 0.3.0, is based on [Rockchip RK3399](http://www.rock-chip
 ### Documents
 * [Installation instructions](installation.md)
 * [Accuracy test instructions](accuracy_test_instruction.md)
-* [Performance Report PDF](performance_report_cvgesture.pdf)
+* [Performance Report PDF](performance_report.pdf)
 
 # Haar Feature Traing
    * https://github.com/Sandeep-777/HandGestureDetection
