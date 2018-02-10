@@ -10,32 +10,38 @@
 - Multiple gestures can be recognized at the same time if there are several hands appearing in the camera. Theoretically there is no upper limit for detection and recognition of the amount of hands at the same time and more than one hand appearing in the camera will not slow down the recognition speed significantly.
 
 
-The release version is 0.3.0, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. You can download the source code from [OAID/CVGesture](https://github.com/OAID/CVGesture)
+The release version is 0.3.1, is based on [Rockchip RK3399](http://www.rock-chips.com/plus/3399.html) Platform, target OS is Ubuntu 16.04. You can download the source code from [OAID/CVGesture](https://github.com/OAID/CVGesture).
 
 ### Documents
-* [Installation instructions](installation.md)
-* [Accuracy test instructions](accuracy_test_instruction.md)
+* [Installation Instructions](installation.md)
+* [Accuracy Test Instructions](accuracy_test_instruction.md)
 * [Performance Report PDF](performance_report.pdf)
 
-# Haar Feature Traing
+# Haar Feature Training
    * https://github.com/Sandeep-777/HandGestureDetection
 
 # Release History
 
+### Version 0.3.1 - 2018-02-01 
+   
+  Fix some bugs in version 0.3.0. 
+
 ### Version 0.3.0 - 2018-01-25 
    
-  Add script to test accuracy of classifier: 
+  Add script to test accuracy of classifier. 
 
 ### Version 0.2.0 - 2017-12-25 
    
-  Retrained Haar cascade classifier to increase the performance: 
+  Retrained Haar cascade classifier to increase the performance. 
   
 ### Version 0.1.0 - 2017-10-13 
    
-  Initial version supports **palm** and **fist** recognization : 
+  Initial version supports **palm** and **fist** recognization.
 
 # Issue Report
-Encounter any issue, please report on [issue report](https://github.com/OAID/CVGesture/issues). Issue report should contain the following information :
+Encounter any issue, please report on [issue report](https://github.com/OAID/CVGesture/issues). Issue report should contain the following information:
 
 *  The exact description of the steps that are needed to reproduce the issue 
 * The exact description of what happens and what you think is wrong 
+
+  

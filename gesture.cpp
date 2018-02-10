@@ -105,12 +105,61 @@ void gesture::read_config()
 
 void gesture::detect(cv::Mat& img)
 {
-    int64 start = cv::getTickCount();
+    img.copyTo(cam_img);
+    split(cam_img, imageRGB);  
+    for (int i = 0; i < 3; i++)  
+    {  
+	   equalizeHist(imageRGB[i], imageRGB[i]);  
+    }  
+    merge(imageRGB, 3, cam_img);
+    //int64 start = cv::getTickCount();
 
-    s = cv::getTickCount();
-    Palm.detectMultiScale(img,palm,1.1,pdetect_num,0|CV_HAAR_SCALE_IMAGE,cv::Size(pdetect_rec,pdetect_rec));
-    Fist.detectMultiScale(img,fist,1.1,fdetect_num,0|CV_HAAR_SCALE_IMAGE,cv::Size(fdetect_rec,fdetect_rec));
-    time_detect += (cv::getTickCount() - s) / cv::getTickFrequency();
+    //s = cv::getTickCount();
+    t.start();
+    s = t.gettimegap();
+    Palm.detectMultiScale(cam_img,palm,1.1,pdetect_num,0|CV_HAAR_SCALE_IMAGE,cv::Size(pdetect_rec,pdetect_rec));
+    Fist.detectMultiScale(cam_img,fist,1.1,fdetect_num,0|CV_HAAR_SCALE_IMAGE,cv::Size(fdetect_rec,fdetect_rec));
+    //time_detect += (cv::getTickCount() - s) / cv::getTickFrequency();
+    t.pause();
+    time_detect += (t.gettimegap() - s)/1000;
+    t.recovery();
+    for (unsigned int i = 0; i < palm.size();i++){
+        x1i = palm[i].x;
+        y1i = palm[i].y;
+        x2i = x1i + palm[i].width;
+        y2i = y1i + palm[i].height;
+        for (unsigned int j = 0; j < fist.size();j++){
+            iou = 0.0;
+            x1j = fist[j].x;
+            y1j = fist[j].y;
+            x2j = x1j + fist[j].width;
+            y2j = y1j + fist[j].height;
+            areai = (x2i-x1i+1)*(y2i-y1i+1);
+            areaj = (x2j-x1j+1)*(y2j-y1j+1);
+
+            xx1 = max(x1i, x1j);
+            yy1 = max(y1i, y1j);
+            xx2 = min(x2i, x2j);
+            yy2 = min(y2i, y2j);
+
+            h = max(0.0, yy2-yy1+1);
+            w = max(0.0, xx2-xx1+1);
+
+            intersection = w * h;
+            iou = max(iou,(intersection / (areai + areaj - intersection)));
+            //printf("iou is: %f\n",iou);
+            if (iou>=0.5)
+            {
+                std::vector<cv::Rect>::iterator pnlist = fist.begin();
+                advance(pnlist,j);
+                if(pnlist!=fist.end())
+                {
+                    fist.erase(pnlist);
+                    j-=1;
+                }
+            }
+        }
+    }
     
     for (unsigned int i = 0; i < palm.size();i++){
         cv::rectangle(img, palm[i],cv::Scalar(0,0,255),4); 
@@ -130,10 +179,10 @@ void gesture::detect(cv::Mat& img)
         add(G_PALM, &(palm[0]));
     else if(is_fist())
         add(G_FIST, &(fist[0]));
-    */
+    
     frame_cnt++;
     time_past += (cv::getTickCount() - start) / cv::getTickFrequency();
-    /*
+    
     if(palm_tlist.size()>=100){
         time_palm = 0;
         list<double>::iterator pi;
@@ -151,16 +200,19 @@ void gesture::detect(cv::Mat& img)
         fist_tlist.clear();
     }
     */
-    if(time_past >= T)
+    t.pause();
+    time_past+=(t.gettimegap()-s)/1000;
+    frame_cnt++;
+    if(time_past/1000 >= T)
     {
-        avg_fps = (double)frame_cnt / time_past;
-        log_printf("average fps:%3.2f, detection time:%f ms in %d second\n", avg_fps, time_detect/frame_cnt*1000, T);
+        avg_fps = (double)frame_cnt / time_past * 1000;
+        log_printf("average fps:%3.2f, detection time:%f ms in %d second\n", avg_fps, time_detect/frame_cnt, T);
         frame_cnt = 0;
         time_past = 0;
         time_detect = 0;
     }
+    t.recovery();
 }
-
 
 bool gesture::is_fist()
 {

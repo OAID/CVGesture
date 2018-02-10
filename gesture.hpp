@@ -12,6 +12,8 @@
 #include <memory.h>
 #include <log.h>
 #include <json/json.h>
+#include <perf.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -83,9 +85,11 @@ public:
     unsigned int m_ANTI_SHAKING_CNT;
     std::vector<cv::Rect> palm;
     std::vector<cv::Rect> fist;
+    std::vector<cv::Rect> fist_tmp;
 
     cv::CascadeClassifier Fist, Palm;
     cv::Mat cam_img;
+    cv::Mat imageRGB[3];
     double time_past=0;
     int frame_cnt = 0;
     int T=5;
@@ -99,6 +103,9 @@ public:
     sys_config config;
     string palm_path;
     string fist_path;
+    double x1j,y1j,x2j,y2j,x1i,y1i,x2i,y2i,xx1,yy1,xx2,yy2;
+    double areai,areaj,h,w,intersection,iou;
+    perf t;
 
 
     gesture()
